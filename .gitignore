@@ -1,0 +1,5 @@
+.DS_Store
+!data/.keep
+!certs/.keep
+data/**/*
+certs/**/*

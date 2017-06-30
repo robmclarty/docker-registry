@@ -1,0 +1,25 @@
+version: '3'
+
+# Depends on, and overrides defaults in, `docker-compose.yml`
+
+services:
+  nginx:
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - ~/nginx/:/etc/nginx/conf.d/
+      - ~/certs/:/etc/ssl/certs/
+      - /etc/letsencrypt/:/etc/letsencrypt/
+
+  registry:
+    restart: always
+    volumes:
+      - ~/data/:/data/
+
+  registry-ui:
+    restart: always
+    environment:
+      ENV_DOCKER_REGISTRY_USE_SSL: 1
+    ports:
+      - 80:80

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.13-alpine
+    ports:
+      - 5043:443
+    links:
+      - registry
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+      - ./certs/:/etc/ssl/certs/
+
+  registry:
+    image: registry:2
+    ports:
+      - 127.0.0.1:5000:5000
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: 'true'
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./data/:/data/
+
+  # registry-ui:
+  #   image: konradkleine/docker-registry-frontend:v2
+  #   restart: always
+  #   environment:
+  #     ENV_DOCKER_REGISTRY_HOST: 'registry'
+  #     ENV_DOCKER_REGISTRY_PORT: 5000
+  #   links:
+  #     - registry
+  #   ports:
+  #     - 8080:80
