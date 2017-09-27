@@ -92,8 +92,10 @@ sudo add-apt-repository \
 
 ### Install Docker
 
-`sudo apt-get update`
-`sudo apt-get -y install docker-ce`
+```
+sudo apt-get update
+sudo apt-get -y install docker-ce
+```
 
 
 ### Install Docker-compose
@@ -148,9 +150,11 @@ actually renew the certs when they need to be (e.g., every month).
 
 Copy your Compose file(s) and server config files to the host machine.
 
-`scp ./docker-compose.yml username@host:~/`
-`scp ./docker-compose-prod.yml username@host:~/`
-`scp ./nginx/registry.conf username@host:~/nginx`
+```
+scp ./docker-compose.yml username@host:~/
+scp ./docker-compose-prod.yml username@host:~/
+scp ./nginx/registry.conf username@host:~/nginx
+```
 
 For example config files used for a similar registry machine, see my sample
 [docker-registry](https://github.com/robmclarty/docker-registry) repo on Github.
